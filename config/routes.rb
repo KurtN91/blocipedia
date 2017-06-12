@@ -61,5 +61,5 @@ Rails.application.routes.draw do
   get 'welcome/faq'
   
   
-  root to: "welcome#index"
+  root 'welcome#index'
 end
