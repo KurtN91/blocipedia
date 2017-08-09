@@ -33,7 +33,8 @@ class WikiController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-    if @wiki.update_attributes(wiki_params)
+    @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
+    if @wiki.update_attributes(@markdown.render(wiki_params))
       flash[:notice] = "Wiki was successfully updated." 
       redirect_to @wiki
     else
