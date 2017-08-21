@@ -3,7 +3,7 @@
   <div class='inner-wrapper'>
     <h1><%= @wiki.title %></h1>
     <%= public_or_private %>
-    <p><%= markdown_to_html(@wiki.body) %></p>
+    <p><%= markdown(@wiki.body) %></p>
     <% if policy(@wiki).edit? %>
       <%= link_to 'Edit Wiki', edit_wiki_path(@wiki.id), class: 'btn btn-success' %>
     <% end %>

@@ -1,7 +1,7 @@
 class WikiController < ApplicationController
-  def index
-    @wikis = policy_scope(Wiki)
-  end
+   def index
+     @wikis = policy_scope(Wiki)
+   end
 
   def show
     @wiki = Wiki.find(params[:id])
@@ -33,8 +33,7 @@ class WikiController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-    @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
-    if @wiki.update_attributes(@markdown.render(wiki_params))
+    if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki was successfully updated." 
       redirect_to @wiki
     else
